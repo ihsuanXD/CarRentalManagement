@@ -40,7 +40,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetColour(int id)
         {
-            var colour = await _unitOfWork.Colours.Get(q => q.id == id);
+            var colour = await _unitOfWork.Colours.Get(q => q.Id == id);
 
             if (colour == null)
             {
@@ -55,7 +55,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutColour(int id, Colour colour)
         {
-            if (id != colour.id)
+            if (id != colour.Id)
             {
                 return BadRequest();
             }
@@ -89,14 +89,14 @@ namespace CarRentalManagement.Server.Controllers
             await _unitOfWork.Colours.Insert(colour);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetColour", new { id = colour.id }, colour);
+            return CreatedAtAction("GetColour", new { id = colour.Id }, colour);
         }
 
         // DELETE: api/Colours/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteColour(int id)
         {
-            var colour = await _unitOfWork.Colours.Get(q => q.id == id);
+            var colour = await _unitOfWork.Colours.Get(q => q.Id == id);
             if (colour == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> ColourExists(int id)
         {
             //return _context.Colours.Any(e => e.id == id);
-            var colour = await _unitOfWork.Colours.Get(q => q.id == id);
+            var colour = await _unitOfWork.Colours.Get(q => q.Id == id);
             return colour != null;
         }
     }

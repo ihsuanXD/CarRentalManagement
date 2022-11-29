@@ -40,7 +40,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBooking(int id)
         {
-            var booking = await _unitOfWork.Bookings.Get(q => q.id == id);
+            var booking = await _unitOfWork.Bookings.Get(q => q.Id == id);
 
             if (booking == null)
             {
@@ -55,7 +55,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBooking(int id, Booking booking)
         {
-            if (id != booking.id)
+            if (id != booking.Id)
             {
                 return BadRequest();
             }
@@ -89,14 +89,14 @@ namespace CarRentalManagement.Server.Controllers
             await _unitOfWork.Bookings.Insert(booking);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetBooking", new { id = booking.id }, booking);
+            return CreatedAtAction("GetBooking", new { id = booking.Id }, booking);
         }
 
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
-            var booking = await _unitOfWork.Bookings.Get(q => q.id == id);
+            var booking = await _unitOfWork.Bookings.Get(q => q.Id == id);
             if (booking == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> BookingExists(int id)
         {
             //return _context.Bookings.Any(e => e.id == id);
-            var booking = await _unitOfWork.Bookings.Get(q => q.id == id);
+            var booking = await _unitOfWork.Bookings.Get(q => q.Id == id);
             return booking != null;
         }
     }

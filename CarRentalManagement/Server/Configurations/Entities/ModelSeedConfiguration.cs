@@ -15,7 +15,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             builder.HasData(
             new Model
             {
-                id = 1,
+                Id = 1,
                 Name = "3 Series",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,
@@ -24,7 +24,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             },
             new Model
             {
-                id = 2,
+                Id = 2,
                 Name = "Prius",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,
@@ -33,7 +33,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             },
             new Model
             {
-                id = 3,
+                Id = 3,
                 Name = "X5",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,
@@ -42,7 +42,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             },
             new Model
             {
-                id = 4,
+                Id = 4,
                 Name = "Rav4",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,

@@ -40,7 +40,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetModel(int id)
         {
-            var model = await _unitOfWork.Models.Get(q => q.id == id);
+            var model = await _unitOfWork.Models.Get(q => q.Id == id);
 
             if (model == null)
             {
@@ -55,7 +55,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutModel(int id, Model model)
         {
-            if (id != model.id)
+            if (id != model.Id)
             {
                 return BadRequest();
             }
@@ -89,14 +89,14 @@ namespace CarRentalManagement.Server.Controllers
             await _unitOfWork.Models.Insert(model);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetModel", new { id = model.id }, model);
+            return CreatedAtAction("GetModel", new { id = model.Id }, model);
         }
 
         // DELETE: api/Models/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteModel(int id)
         {
-            var model = await _unitOfWork.Models.Get(q => q.id == id);
+            var model = await _unitOfWork.Models.Get(q => q.Id == id);
             if (model == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> ModelExists(int id)
         {
             //return _context.Models.Any(e => e.id == id);
-            var model = await _unitOfWork.Models.Get(q => q.id == id);
+            var model = await _unitOfWork.Models.Get(q => q.Id == id);
             return model != null;
         }
     }

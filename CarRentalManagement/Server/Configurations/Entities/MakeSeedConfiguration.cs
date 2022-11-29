@@ -15,7 +15,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             builder.HasData(
             new Make
             {
-                id = 1,
+                Id = 1,
                 Name = "BMW",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,
@@ -24,7 +24,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             },
             new Make
             {
-                id = 2,
+                Id = 2,
                 Name = "Toyota",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,

@@ -32,7 +32,7 @@ namespace CarRentalManagement.Server.Controllers
         public async Task<IActionResult> GetVehicles()
         {
             //return await _context.Vehicles.ToListAsync();
-            var vehicles = await _unitOfWork.Vehicles.GetAll();
+            var vehicles = await _unitOfWork.Vehicles.GetAll(includes: q => q.Include(x => x.Make).Include(x => x.Model).Include(x => x.Colour));
             return Ok(vehicles);
         }
 
@@ -40,7 +40,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVehicle(int id)
         {
-            var vehicle = await _unitOfWork.Vehicles.Get(q => q.id == id);
+            var vehicle = await _unitOfWork.Vehicles.Get(q => q.Id == id);
 
             if (vehicle == null)
             {
@@ -55,7 +55,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVehicle(int id, Vehicle vehicle)
         {
-            if (id != vehicle.id)
+            if (id != vehicle.Id)
             {
                 return BadRequest();
             }
@@ -89,14 +89,14 @@ namespace CarRentalManagement.Server.Controllers
             await _unitOfWork.Vehicles.Insert(vehicle);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetVehicle", new { id = vehicle.id }, vehicle);
+            return CreatedAtAction("GetVehicle", new { id = vehicle.Id }, vehicle);
         }
 
         // DELETE: api/Vehicles/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
-            var vehicle = await _unitOfWork.Vehicles.Get(q => q.id == id);
+            var vehicle = await _unitOfWork.Vehicles.Get(q => q.Id == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> VehicleExists(int id)
         {
             //return _context.Vehicles.Any(e => e.id == id);
-            var vehicle = await _unitOfWork.Vehicles.Get(q => q.id == id);
+            var vehicle = await _unitOfWork.Vehicles.Get(q => q.Id == id);
             return vehicle != null;
         }
     }

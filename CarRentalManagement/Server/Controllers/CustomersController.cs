@@ -40,7 +40,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCustomer(int id)
         {
-            var customer = await _unitOfWork.Customers.Get(q => q.id == id);
+            var customer = await _unitOfWork.Customers.Get(q => q.Id == id);
 
             if (customer == null)
             {
@@ -55,7 +55,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            if (id != customer.id)
+            if (id != customer.Id)
             {
                 return BadRequest();
             }
@@ -89,14 +89,14 @@ namespace CarRentalManagement.Server.Controllers
             await _unitOfWork.Customers.Insert(customer);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetCustomer", new { id = customer.id }, customer);
+            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
         }
 
         // DELETE: api/Customers/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
-            var customer = await _unitOfWork.Customers.Get(q => q.id == id);
+            var customer = await _unitOfWork.Customers.Get(q => q.Id == id);
             if (customer == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> CustomerExists(int id)
         {
             //return _context.Customers.Any(e => e.id == id);
-            var customer = await _unitOfWork.Customers.Get(q => q.id == id);
+            var customer = await _unitOfWork.Customers.Get(q => q.Id == id);
             return customer != null;
         }
     }

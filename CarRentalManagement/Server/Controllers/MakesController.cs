@@ -40,7 +40,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMake(int id)
         {
-            var make = await _unitOfWork.Makes.Get(q => q.id == id);
+            var make = await _unitOfWork.Makes.Get(q => q.Id == id);
 
             if (make == null)
             {
@@ -55,7 +55,7 @@ namespace CarRentalManagement.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMake(int id, Make make)
         {
-            if (id != make.id)
+            if (id != make.Id)
             {
                 return BadRequest();
             }
@@ -89,14 +89,14 @@ namespace CarRentalManagement.Server.Controllers
             await _unitOfWork.Makes.Insert(make);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetMake", new { id = make.id }, make);
+            return CreatedAtAction("GetMake", new { id = make.Id }, make);
         }
 
         // DELETE: api/Makes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMake(int id)
         {
-            var make = await _unitOfWork.Makes.Get(q => q.id == id);
+            var make = await _unitOfWork.Makes.Get(q => q.Id == id);
             if (make == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> MakeExists(int id)
         {
             //return _context.Makes.Any(e => e.id == id);
-            var make = await _unitOfWork.Makes.Get(q => q.id == id);
+            var make = await _unitOfWork.Makes.Get(q => q.Id == id);
             return make != null;
         }
     }

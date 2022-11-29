@@ -15,7 +15,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             builder.HasData(
             new Colour
             {
-                id = 1,
+                Id = 1,
                 Name = "Black",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,
@@ -24,7 +24,7 @@ namespace CarRentalManagement.Server.Configurations.Entities
             },
             new Colour
             {
-                id = 2,
+                Id = 2,
                 Name = "Blue",
                 DateCreated = DateTime.Now,
                 DateUpdated = DateTime.Now,
